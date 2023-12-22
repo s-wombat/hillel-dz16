@@ -17,6 +17,7 @@ class EventFactory extends Factory
     public function definition(): array
     {
         return [
+            'user_id' => mt_rand(1, 11),
             'name' => fake()->word(),
             'description' => fake()->text(100, 2),
             'dateTime' => fake()->dateTimeInInterval('+1 days', '+60 days'),

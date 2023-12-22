@@ -19,10 +19,18 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
-Route::controller(UserController::class)->group(function () {
-    Route::get('/users', 'index')->name('users');
-    Route::get('/users/{id}', 'user')->name('user');
-});
+//Route::controller(UserController::class)->prefix('users')->name('users.')->group(function () {
+//    Route::get('/', 'index')->name('index');
+//    Route::get('/create', 'create')->name('create');
+//    Route::post('/store', 'store')->name('store');
+//    Route::get('/{id}', 'show')->name('show');
+//    Route::get('/{id}/edit', 'edit')->name('edit');
+//    Route::put('/{id}', 'update')->name('update');
+//    Route::delete('/{id}/delete', 'destroy')->name('destroy');
+//});
+
+Route::resource('users', UserController::class);
+
 Route::controller(EventController::class)->group(function () {
     Route::get('/events', 'index')->name('events');
     Route::get('/events/{id}', 'event')->name('event');

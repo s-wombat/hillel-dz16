@@ -12,7 +12,7 @@
         </thead>
         <tbody>
         @foreach($events as $event)
-            @include('partials.rowEvent', ['event' => $event])
+            @include('partials.row_event', ['event' => $event])
         @endforeach
         </tbody>
     </table>
