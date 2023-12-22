@@ -56,6 +56,14 @@ class CategoryController extends Controller
     public function edit(string $id)
     {
         $category = Category::find($id);
+
+        if($id == 5) {
+            $category->name = 'new5';
+            $category->description = 'new description';
+            $category->save();
+            return redirect()->route('categories.index');
+        }
+
         return view('categories.edit', [
             'category' => $category
         ]);
