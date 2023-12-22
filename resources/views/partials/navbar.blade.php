@@ -7,7 +7,8 @@
             <div class="navbar-nav">
                 <a class="nav-link" aria-current="page" href="{{ route('welcome') }}">Home</a>
                 <a class="nav-link" href="{{ route('users.index') }}">Users</a>
-                <a class="nav-link" href="{{ route('events') }}">Events</a>
+{{--                <a class="nav-link" href="{{ route('events.index') }}">Events</a>--}}
+                <a class="nav-link" href="{{ route('categories.index') }}">Categories</a>
             </div>
         </div>
     </div>
