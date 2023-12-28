@@ -15,9 +15,11 @@ class Event extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'description',
-        'dateTime'
+        'user_id',
+        'title',
+        'notes',
+        'dt_start',
+        'dt_end'
     ];
 
     public function user()

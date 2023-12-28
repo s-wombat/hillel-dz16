@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class EventController extends Controller
@@ -18,18 +19,13 @@ class EventController extends Controller
         ]);
     }
 
-    public function event($id)
-    {
-        $event = Event::find($id);
-        return view('events.event', compact('event'));
-    }
-
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        //
+        $users = User::all();
+        return view('events.create', compact('users'));
     }
 
     /**
@@ -37,7 +33,16 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $event = Event::create([
+            'user_id' => $request->user,
+            'title' => $request->title,
+            'notes' => $request->notes,
+            'dt_start' => $request->dt_start,
+            'dt_end' => $request->dt_end,
+        ]);
+        $event->save();
+
+        return redirect()->route('events.index');
     }
 
     /**
@@ -45,7 +50,8 @@ class EventController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $event = Event::find($id);
+        return view('events.event', compact('event'));
     }
 
     /**
@@ -53,7 +59,12 @@ class EventController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $event = Event::find($id);
+        $users = User::all();
+        return view('events.edit', [
+            'event' => $event,
+            'users' => $users
+        ]);
     }
 
     /**
@@ -61,7 +72,15 @@ class EventController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $event = Event::find($id);
+        $event->user_id = $request->user;
+        $event->title = $request->title;
+        $event->notes = $request->notes;
+        $event->dt_start = $request->dt_start;
+        $event->dt_end = $request->dt_end;
+        $event->save();
+
+        return redirect()->route('events.index');
     }
 
     /**
@@ -69,6 +88,8 @@ class EventController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $event = Event::find($id);
+        $event->delete();
+        return redirect()->route('events.index');
     }
 }

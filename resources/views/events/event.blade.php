@@ -2,11 +2,11 @@
 
 @section('content')
     <div>
+        <h2>Event:</h2>
         <p>Id = {{ $event->id }}</p>
-        <p>Name = {{ $event->name }}</p>
-        <p>Description = {{ $event->description }}</p>
-        <p>dateTime = {{ $event->dateTime }}</p>
-        <p>Created at = {{ $event->created_at }}</p>
-        <p>Updated at = {{ $event->updated_at }}</p>
+        <p>Title = {{ $event->title }}</p>
+        <p>Notes = {{ $event->notes }}</p>
+        <p>Date Start = {{ $event->dt_start }}</p>
+        <p>Date End = {{ $event->dt_end }}</p>
     </div>
 @endsection

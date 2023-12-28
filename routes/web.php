@@ -32,9 +32,14 @@ Route::get('/', function () {
 
 Route::resource('users', UserController::class);
 
-Route::controller(EventController::class)->group(function () {
-    Route::get('/events', 'index')->name('events');
-    Route::get('/events/{id}', 'event')->name('event');
+Route::controller(EventController::class)->prefix('events')->name('events.')->group(function () {
+    Route::get('/', 'index')->name('index');
+    Route::get('/create', 'create')->name('create');
+    Route::post('/store', 'store')->name('store');
+    Route::get('/{id}', 'show')->name('show');
+    Route::get('/{id}/edit', 'edit')->name('edit');
+    Route::put('/{id}', 'update')->name('update');
+    Route::delete('/{id}/delete', 'destroy')->name('destroy');
 });
 
 Route::controller(CategoryController::class)->prefix('categories')->name('categories.')->group(function () {
