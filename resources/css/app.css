@@ -4,3 +4,7 @@
 /*.container {*/
 /*    width: 720px;*/
 /*}*/
+
+.form-label {
+    margin-top: 0.5rem;
+}

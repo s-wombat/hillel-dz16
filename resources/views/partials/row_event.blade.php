@@ -9,10 +9,10 @@
     <td>{{ $event->user->name }}</td>
     <td>
         <form action="{{ route('events.destroy', $event->id) }}" method="POST">
-            <a class="btn btn-outline-secondary" href="{{ route('events.edit',$event->id) }}">Edit</a>
+            <x-a-button href="{{ route('events.edit',$event->id) }}" color="outline-secondary">Edit</x-a-button>
             @csrf
             @method('DELETE')
-            <button type="submit" class="btn btn-outline-danger">Delete</button>
+            <x-button type="submit" color="outline-danger">Delete</x-button>
         </form>
     </td>
 </tr>

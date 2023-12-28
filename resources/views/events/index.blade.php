@@ -1,9 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <x-a-button class="btn btn-outline-primary" href="{{ route('events.create') }}">Create</x-a-button>
-{{--    <x-button class="btn btn-outline-danger" type="submit">Delete</x-button>--}}
-{{--    <x-a-button class="btn btn-outline-secondary" href="">Edit</x-a-button>--}}
+    <x-a-button href="{{ route('events.create') }}" color="outline-primary">Create</x-a-button>
     <table class="table table-striped">
         <thead>
         <tr>

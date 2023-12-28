@@ -5,10 +5,10 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-link" aria-current="page" href="{{ route('welcome') }}">Home</a>
-                <a class="nav-link" href="{{ route('users.index') }}">Users</a>
-                <a class="nav-link" href="{{ route('events.index') }}">Events</a>
-                <a class="nav-link" href="{{ route('categories.index') }}">Categories</a>
+                <a class="nav-link {{ active_link('welcome') }}" aria-current="page" href="{{ route('welcome') }}">Home</a>
+                <a class="nav-link {{ active_link('users.index') }}" href="{{ route('users.index') }}">Users</a>
+                <a class="nav-link {{ active_link('events.index') }}" href="{{ route('events.index') }}">Events</a>
+                <a class="nav-link {{ active_link('categories.index') }}" href="{{ route('categories.index') }}">Categories</a>
             </div>
         </div>
     </div>

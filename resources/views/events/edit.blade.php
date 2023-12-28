@@ -11,47 +11,42 @@
             </ul>
         </div>
     @endif
-    <form method="POST"
-          @if(isset($event->id))
-              action="{{ route('events.update', $event->id) }}"
-            @endif
-    >
+    <x-form method="POST" action="{{ route('events.update', $event->id) }}">
         @method('PUT')
-        @csrf
         <div class="row">
             <div class="col">
-                <label for="inputTitle" class="form-label">Title</label>
-                <input type="text" id="inputTitle" class="form-control" name="title" value="@if(isset($event)) {{ $event->title }} @endif" placeholder="Title">
+                <x-label form-label for="inputTitle">Title</x-label>
+                <x-input type="text" id="inputTitle" name="title" :value="$event->title" placeholder="Title" />
             </div>
             <div class="col">
-                <label for="inputNotes" class="form-label">Notes</label>
-                <input type="text" id="inputNotes" class="form-control" name="notes" value="@if(isset($event)) {{ $event->notes }} @endif" placeholder="Notes">
+                <x-label form-label for="inputNotes">Notes</x-label>
+                <x-input type="text" id="inputNotes" name="notes" :value="$event->notes" placeholder="Notes" />
             </div>
         </div>
         <div class="row">
             <div class="col">
-                <label for="inputDateStart" class="form-label">Date Start</label>
-                <input type="text" id="inputDateStart" class="form-control" name="dt_start" value="@if(isset($event)) {{ $event->dt_start }} @endif" aria-label="Date Start">
+                <x-label form-label for="inputDateStart">Date Start</x-label>
+                <x-input type="text" id="inputDateStart" name="dt_start" :value="$event->dt_start" />
             </div>
             <div class="col">
-                <label for="inputUser" class="form-label">Select User</label>
-                <select id="inputUser" class="form-select" name="user" aria-label="User">
+                <x-label form-label for="inputUser">Select User</x-label>
+                <x-select name="user" id="inputUser">
                     @foreach($users as $user)
-                        <option value="@if(isset($user)) {{ $user->id }} @endif" @if($event->user->id == $user->id) selected @endif>{{$user->name}}</option>
+                        <option value="@isset($user) {{ $user->id }} @endisset" @if($event->user->id == $user->id) selected @endif>{{$user->name}}</option>
                     @endforeach
-                </select>
+                </x-select>
             </div>
         </div>
         <div class="row">
             <div class="col">
                 <div class="col">
-                    <label for="inputDateEnd" class="form-label">Date End</label>
-                    <input type="text" id="inputDateEnd" class="form-control" name="dt_end" value="@if(isset($event)) {{ $event->dt_end }} @endif" aria-label="Date End">
+                    <x-label form-label for="inputDateEnd">Date End</x-label>
+                    <x-input type="text" id="inputDateEnd" name="dt_end" :value="$event->dt_end" />
                 </div>
             </div>
             <div class="col">
-                <button type="submit" class="btn btn-primary btn-user-save">Save</button>
+                <x-button type="submit" class="btn-user-save">Save</x-button>
             </div>
         </div>
-    </form>
+    </x-form>
 @endsection

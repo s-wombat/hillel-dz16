@@ -15,9 +15,24 @@ class UserController extends Controller
     public function index()
     {
         $users = User::paginate(10);
+
+        if(!$users->all()) {
+            $this->createDefault();
+        }
         return view('users.index', [
             'users' => $users
         ]);
+    }
+
+    private function createDefault()
+    {
+        $user = User::create([
+            'name' => 'Default Name',
+            'email' => 'default@mail.com',
+            'password' => '123',
+            'role' => '0'
+        ]);
+        $user->save();
     }
 
     /**

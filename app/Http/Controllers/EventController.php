@@ -14,6 +14,11 @@ class EventController extends Controller
     public function index()
     {
         $events = Event::paginate(10);
+        foreach ($events as $event) {
+            $event->dt_start = date('Y-m-d',strtotime($event->dt_start));
+            $event->dt_end = date('Y-m-d',strtotime($event->dt_end));
+        }
+
         return view('events.index', [
             'events' => $events
         ]);
@@ -37,8 +42,8 @@ class EventController extends Controller
             'user_id' => $request->user,
             'title' => $request->title,
             'notes' => $request->notes,
-            'dt_start' => $request->dt_start,
-            'dt_end' => $request->dt_end,
+            'dt_start' => $request->dt_start ? $request->dt_start : date('Y-m-d'),
+            'dt_end' => $request->dt_end ? $request->dt_end : date('Y-m-d'),
         ]);
         $event->save();
 
@@ -61,6 +66,9 @@ class EventController extends Controller
     {
         $event = Event::find($id);
         $users = User::all();
+        $event->dt_start = date('Y-m-d',strtotime($event->dt_start));
+        $event->dt_end = date('Y-m-d',strtotime($event->dt_end));
+
         return view('events.edit', [
             'event' => $event,
             'users' => $users
@@ -76,8 +84,8 @@ class EventController extends Controller
         $event->user_id = $request->user;
         $event->title = $request->title;
         $event->notes = $request->notes;
-        $event->dt_start = $request->dt_start;
-        $event->dt_end = $request->dt_end;
+        $event->dt_start = date('Y-m-d',strtotime($request->dt_start));
+        $event->dt_end = date('Y-m-d',strtotime($request->dt_end));
         $event->save();
 
         return redirect()->route('events.index');
