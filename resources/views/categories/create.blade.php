@@ -31,3 +31,9 @@
         </div>
     </form>
 @endsection
+
+<style>
+    .btn-user-save {
+        margin: 32px 0;
+    }
+</style>
