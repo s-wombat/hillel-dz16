@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use App\Models\User;
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreEventRequest;
 
 class EventController extends Controller
 {
@@ -36,14 +36,15 @@ class EventController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreEventRequest $request)
     {
+        $validated = $request->validated();
         $event = Event::create([
-            'user_id' => $request->user,
-            'title' => $request->title,
-            'notes' => $request->notes,
-            'dt_start' => $request->dt_start ? $request->dt_start : date('Y-m-d'),
-            'dt_end' => $request->dt_end ? $request->dt_end : date('Y-m-d'),
+            'user_id' => $validated['user'],
+            'title' => $validated['title'],
+            'notes' => $validated['notes'],
+            'dt_start' => $validated['dt_start'],
+            'dt_end' => $validated['dt_end'],
         ]);
         $event->save();
 
@@ -78,14 +79,15 @@ class EventController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(StoreEventRequest $request, string $id)
     {
+        $validated = $request->validated();
         $event = Event::find($id);
-        $event->user_id = $request->user;
-        $event->title = $request->title;
-        $event->notes = $request->notes;
-        $event->dt_start = date('Y-m-d',strtotime($request->dt_start));
-        $event->dt_end = date('Y-m-d',strtotime($request->dt_end));
+        $event->user_id = $validated['user'];
+        $event->title = $validated['title'];
+        $event->notes = $validated['notes'];
+        $event->dt_start = date('Y-m-d',strtotime($validated['dt_start']));
+        $event->dt_end = date('Y-m-d',strtotime($validated['dt_end']));
         $event->save();
 
         return redirect()->route('events.index');

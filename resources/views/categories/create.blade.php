@@ -16,11 +16,11 @@
         <div class="row">
             <div class="col">
                 <label for="inputName" class="form-label">Name</label>
-                <input type="text" id="inputName" class="form-control" name="name" placeholder="Name">
+                <input type="text" id="inputName" class="form-control" name="name" value="{{ old('name') }}" placeholder="Name">
             </div>
             <div class="col">
                 <label for="inputDescription" class="form-label">Description</label>
-                <input type="text" id="inputDescription" class="form-control" name="description" placeholder="Description">
+                <input type="text" id="inputDescription" class="form-control" name="description" value="{{ old('description') }}" placeholder="Description">
             </div>
         </div>
         <div class="row">

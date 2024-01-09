@@ -15,23 +15,23 @@
          <div class="row">
             <div class="col">
                 <x-label form-label for="inputTitle">Title</x-label>
-                <x-input name="title" id="inputTitle" placeholder="Title"  />
+                <x-input name="title" id="inputTitle" value="{{ old('title') }}" placeholder="Title"  />
             </div>
             <div class="col">
                 <x-label form-label for="inputNotes">Notes</x-label>
-                <x-input name="notes" id="inputNotes" placeholder="Notes" />
+                <x-input name="notes" id="inputNotes" value="{{ old('notes') }}" placeholder="Notes" />
             </div>
          </div>
          <div class="row">
             <div class="col">
                 <x-label form-label for="inputDateStart">Date Start</x-label>
-                <x-input type="date" name="dt_start" id="inputDateStart" placeholder="Date Start" />
+                <x-input type="date" name="dt_start" id="inputDateStart" value="{{ old('dt_start') }}" placeholder="Date Start" />
             </div>
              <div class="col">
                 <x-label form-label for="inputUser">Select User</x-label>
                  <x-select name="user" id="inputUser">
                      @foreach($users as $user)
-                         <option value="@if(isset($user->id)) {{ $user->id }} @endif">{{$user->name}}</option>
+                         <option value="@if(isset($user->id)) {{ $user->id }} @endif" {{ old('user') == $user->id ? "selected" : "" }}>{{$user->name}}</option>
                      @endforeach
                  </x-select>
             </div>
@@ -40,7 +40,7 @@
              <div class="col">
                  <div class="col">
                      <x-label form-label for="inputDateEnd">Date End</x-label>
-                     <x-input type="date" name="dt_end" id="inputDateEnd" placeholder="Date End" />
+                     <x-input type="date" name="dt_end" id="inputDateEnd" value="{{ old('dt_end') }}" placeholder="Date End" />
                  </div>
              </div>
              <div class="col">

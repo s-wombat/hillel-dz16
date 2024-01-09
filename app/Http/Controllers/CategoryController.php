@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\Rules\Password;
+use App\Http\Requests\StoreCategoryRequest;
 
 class CategoryController extends Controller
 {
@@ -14,7 +13,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::query()->whereBetween('id', array(4, 7))->get();
+        $categories = Category::query()->get();
         return view('categories.index', [
             'categories' => $categories
         ]);
@@ -31,11 +30,12 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreCategoryRequest $request)
     {
+        $validated = $request->validated();
         $category = Category::create([
-            'name' => $request->name,
-            'description' => $request->description,
+            'name' => $validated['name'],
+            'description' => $validated['description'],
         ]);
         $category->save();
 
@@ -72,11 +72,12 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(StoreCategoryRequest $request, string $id)
     {
+        $validated = $request->validated();
         $category = Category::find($id);
-        $category->name = $request->name;
-        $category->description = $request->description;
+        $category->name = $validated['name'];
+        $category->description = $validated['description'];
         $category->save();
 
         return redirect()->route('categories.index');

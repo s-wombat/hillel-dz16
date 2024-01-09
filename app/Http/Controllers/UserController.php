@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreUserRequest;
 use Illuminate\Validation\Rules\Password;
-use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -43,42 +43,12 @@ class UserController extends Controller
         return view('users.create');
     }
 
-    private function checkPassword($request)
-    {
-        if ($request['password'] === $request['password_confirmation']) {
-            return true;
-        }
-            return false;
-    }
-
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreUserRequest $request)
     {
-        $validator = Validator::make($request->all(), [
-            'name' => ['required','max:255'],
-            'email' => ['required', 'email'],
-            'password' => ['required', Password::min(3)],
-            'password_confirmation' => ['required', Password::min(3)],
-            'role' => ['required', 'boolean'],
-        ]);
-
-        $validator->after(function ($validator) {
-            if (!$this->checkPassword($validator->validated())) {
-                $validator->errors()->add(
-                    'password', 'Password not confirmated!'
-                );
-            }
-        });
-
-        if ($validator->fails()) {
-            return redirect('users/create')
-                ->withErrors($validator)
-                ->withInput();
-        }
-
-        $validated = $validator->validated();
+        $validated = $request->validated();
 
         $user = User::create([
             'name' => $validated['name'],
@@ -116,7 +86,7 @@ class UserController extends Controller
     {
         $validator = $request->validate([
             'name' => ['sometimes', 'max:255'],
-            'email' => ['sometimes',  'email'],
+            'email' => ['sometimes', 'unique:users',  'email'],
             'password' => ['sometimes',  Password::min(3)->sometimes()],
             'role' => ['required', 'boolean'],
         ]);
