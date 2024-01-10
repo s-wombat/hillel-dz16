@@ -31,7 +31,7 @@
          <div class="row">
             <div class="col">
                 <label for="inputPassword" class="form-label">Password</label>
-                <input type="text" id="inputPassword" class="form-control" name="password" value="" placeholder="Password" aria-label="Password">
+                <input type="password" id="inputPassword" class="form-control" name="password" value="" placeholder="Password" aria-label="Password">
             </div>
              <div class="col">
                  <label for="inputRole" class="form-label">Role</label>

@@ -20,7 +20,7 @@
             </div>
             <div class="col">
                 <label for="inputPassword" class="form-label">Password</label>
-                <input type="text" id="inputPassword" class="form-control" name="password" placeholder="Password" value="{{ old('password') }}">
+                <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Password" value="{{ old('password') }}">
             </div>
          </div>
          <div class="row">
@@ -30,7 +30,7 @@
             </div>
              <div class="col">
                 <label for="inputPasswordConfirmation" class="form-label">Password Confirmation</label>
-                <input type="text" id="inputPasswordConfirmation" class="form-control" name="password_confirmation" placeholder="Password Confirmation" value="{{ old('password_confirmation') }}">
+                <input type="password" id="inputPasswordConfirmation" class="form-control" name="password_confirmation" placeholder="Password Confirmation" value="{{ old('password_confirmation') }}">
             </div>
          </div>
         <div class="row">
