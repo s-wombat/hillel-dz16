@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreUserRequest;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
 
 class UserController extends Controller
@@ -53,7 +54,7 @@ class UserController extends Controller
         $user = User::create([
             'name' => $validated['name'],
             'email' => $validated['email'],
-            'password' => $validated['password'],
+            'password' => Hash::make($validated['password']),
             'role' => $validated['role']
         ]);
         $user->save();
@@ -86,7 +87,7 @@ class UserController extends Controller
     {
         $validator = $request->validate([
             'name' => ['sometimes', 'max:255'],
-            'email' => ['sometimes', 'unique:users',  'email'],
+            'email' => ['sometimes', 'email'],
             'password' => ['sometimes',  Password::min(3)->sometimes()],
             'role' => ['required', 'boolean'],
         ]);
@@ -96,7 +97,7 @@ class UserController extends Controller
         $user->email = $validator['email'];
 
         if(isset($validator['password'])) {
-            $user->password = $validator['password'];
+            $user->password = Hash::make($validator['password']);
         }
         $user->role = $validator['role'];
         $user->save();
