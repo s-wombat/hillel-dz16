@@ -16,7 +16,7 @@
         </thead>
         <tbody>
         @foreach($events as $event)
-            @include('partials.row_event', ['event' => $event])
+            @include('events.partials.row', ['event' => $event])
         @endforeach
         </tbody>
     </table>

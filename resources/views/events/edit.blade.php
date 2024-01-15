@@ -15,21 +15,21 @@
         @method('PUT')
         <div class="row">
             <div class="col">
-                <x-label form-label for="inputTitle">Title</x-label>
+                <x-label for="inputTitle">Title</x-label>
                 <x-input type="text" id="inputTitle" name="title" :value="$event->title" placeholder="Title" />
             </div>
             <div class="col">
-                <x-label form-label for="inputNotes">Notes</x-label>
+                <x-label for="inputNotes">Notes</x-label>
                 <x-input type="text" id="inputNotes" name="notes" :value="$event->notes" placeholder="Notes" />
             </div>
         </div>
         <div class="row">
             <div class="col">
-                <x-label form-label for="inputDateStart">Date Start</x-label>
+                <x-label for="inputDateStart">Date Start</x-label>
                 <x-input type="text" id="inputDateStart" name="dt_start" :value="$event->dt_start" />
             </div>
             <div class="col">
-                <x-label form-label for="inputUser">Select User</x-label>
+                <x-label for="inputUser">Select User</x-label>
                 <x-select name="user" id="inputUser">
                     @foreach($users as $user)
                         <option value="@isset($user) {{ $user->id }} @endisset" @if($event->user->id == $user->id) selected @endif>{{$user->name}}</option>
@@ -40,7 +40,7 @@
         <div class="row">
             <div class="col">
                 <div class="col">
-                    <x-label form-label for="inputDateEnd">Date End</x-label>
+                    <x-label for="inputDateEnd">Date End</x-label>
                     <x-input type="text" id="inputDateEnd" name="dt_end" :value="$event->dt_end" />
                 </div>
             </div>

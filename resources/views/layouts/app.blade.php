@@ -17,6 +17,10 @@
         .form-label {
             margin-top: 0.5rem;
         }
+        .required:after {
+            content: '*';
+            color: red;
+        }
     </style>
     <title>Home Task #16</title>
 </head>

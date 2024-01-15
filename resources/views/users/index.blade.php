@@ -13,9 +13,9 @@
         </tr>
         </thead>
         <tbody>
-            @foreach($users as $user)
-                @include('partials.row_user', ['user' => $user])
-            @endforeach
+        @foreach($users as $user)
+            @include('users.partials.row', ['user' => $user])
+        @endforeach
         </tbody>
     </table>
     {{ $users->links() }}

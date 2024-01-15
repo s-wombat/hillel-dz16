@@ -1,7 +1,7 @@
-@props(['form-lavel'])
+@props(['required' => false])
 
 <label {{ $attributes->class([
-    'form-label'
+    'form-label', ($required ? 'required' : '')
 ]) }}>
     {{ $slot }}
 </label>

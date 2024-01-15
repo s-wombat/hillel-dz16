@@ -13,7 +13,7 @@
         </thead>
         <tbody>
         @foreach($categories as $category)
-            @include('partials.row_category', ['$category' => $category])
+            @include('categories.partials.row', ['$category' => $category])
         @endforeach
         </tbody>
     </table>
