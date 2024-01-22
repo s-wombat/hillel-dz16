@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\OAuth\SocialController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\EventController;
@@ -23,11 +24,13 @@ Route::get('/', function () {
 
 
 Route::middleware('guest')->group(function () {
-    Route::get('/login', [AuthController::class, 'login'])->name('login.index');
+    Route::get('/login', [AuthController::class, 'login'])->name('login');
     Route::post('/authenticate', [AuthController::class, 'authenticate'])->name('authenticate');
 
     Route::get('/register', [AuthController::class, 'register'])->name('register.index');
     Route::post('/register_store', [AuthController::class, 'registerStore'])->name('register.store');
+
+    Route::get('/oauth/facebook', [SocialController::class, 'facebook'])->name('facebook');
 
 });
 

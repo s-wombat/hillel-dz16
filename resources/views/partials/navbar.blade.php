@@ -14,7 +14,7 @@
             </div>
             <div class="navbar-nav ms-auto">
                 @guest('web')
-                <a class="nav-link {{ active_link('login') }}" href="{{ route('login.index') }}">{{ __('Login') }}</a>
+                <a class="nav-link {{ active_link('login') }}" href="{{ route('login') }}">{{ __('Login') }}</a>
                 <a class="nav-link {{ active_link('register') }}" href="{{ route('register.index') }}">{{ __('Register') }}</a>
                 @endguest
                 @auth('web')

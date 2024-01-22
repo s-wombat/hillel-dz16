@@ -10,6 +10,7 @@
             </x-card-title>
         </x-card-header>
         <x-card-body>
+        <a class="nav-link" href="{{ $facebookLink }}">{{ __('Войти через Facebook') }}</a>
             <x-form action="{{ route('authenticate') }}" method="POST">
                 <x-form-item>
                     <x-label required>{{ __('Email') }}</x-label>
@@ -25,7 +26,6 @@
                         {{ $message }}
                     @enderror
                 </x-form-item>
-
                 <x-button type="submit" color="success">
                     {{ __('Войти') }}
                 </x-button>

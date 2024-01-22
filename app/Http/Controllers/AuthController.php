@@ -11,7 +11,10 @@ class AuthController extends Controller
 {
     public function login()
     {
-        return view('auth.login');
+        $facebookLink = "https://www.facebook.com/v18.0/dialog/oauth?client_id=".env('FACEBOOK_CLIENT_ID')."&redirect_uri=".env('FACEBOOK_REDIRECT_URI')."&state={st=state123abc,ds=123456789}";
+        return view('auth.login', [
+            'facebookLink' => $facebookLink
+        ]);
     }
     public function authenticate(Request $request)
     {
