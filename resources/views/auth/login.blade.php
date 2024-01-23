@@ -10,6 +10,9 @@
             </x-card-title>
         </x-card-header>
         <x-card-body>
+        @error('common_error')
+            {{ $message }}
+        @enderror
         <a class="nav-link" href="{{ $facebookLink }}">{{ __('Войти через Facebook') }}</a>
             <x-form action="{{ route('authenticate') }}" method="POST">
                 <x-form-item>
