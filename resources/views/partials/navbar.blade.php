@@ -6,6 +6,7 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav me-auto">
                 <a class="nav-link {{ active_link('welcome') }}" aria-current="page" href="{{ route('welcome') }}">{{ __('Home') }}</a>
+                <a class="nav-link {{ active_link('contact') }}" aria-current="page" href="{{ route('contact') }}">{{ __('Contact with us') }}</a>
                 @auth('web')
                 <a class="nav-link {{ active_link('users.index') }}" href="{{ route('users.index') }}">{{ __('Users') }}</a>
                 <a class="nav-link {{ active_link('events.index') }}" href="{{ route('events.index') }}">{{ __('Events') }}</a>

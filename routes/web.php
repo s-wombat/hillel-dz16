@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\IndexController;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,4 +58,9 @@ Route::middleware('auth')->group(function () {
         Route::put('/{id}', 'update')->name('update');
         Route::delete('/{id}/delete', 'destroy')->name('destroy');
     });
+});
+
+Route::controller(IndexController::class)->group(function () {
+    Route::get('/contact', 'showContactForm')->name('contact');
+    Route::post('/contact_process', 'contactFormProcess')->name('contact_process');
 });
