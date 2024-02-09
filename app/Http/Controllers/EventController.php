@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\EventCreated;
 use App\Models\Event;
 use App\Models\User;
 use App\Http\Requests\StoreEventRequest;
@@ -48,6 +49,7 @@ class EventController extends Controller
         ]);
         $event->save();
 
+        event(new EventCreated($event));
         return redirect()->route('events.index');
     }
 
